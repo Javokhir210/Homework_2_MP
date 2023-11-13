@@ -24,11 +24,11 @@ class MainPage extends StatefulWidget {
 }
 
 class FirstPageState extends State<MainPage> {
-  bool isTask1Selected = true;
+  bool isTask1 = true;
 
-  void toggleTask() {
+  void changePage() {
     setState(() {
-      isTask1Selected = !isTask1Selected;
+      isTask1 = !isTask1;
     });
   }
 
@@ -38,9 +38,9 @@ class FirstPageState extends State<MainPage> {
       appBar: AppBar(
         title: const Text('Widget Practice'),
       ),
-      body: isTask1Selected ? Task1Page() : Task2Page(toggleTask),
+      body: isTask1 ? const Task1Page() : Task2Page(changePage),
       floatingActionButton: FloatingActionButton(
-        onPressed: toggleTask,
+        onPressed: changePage,
         child: const Icon(Icons.swap_horiz),
       ),
     );
@@ -48,10 +48,12 @@ class FirstPageState extends State<MainPage> {
 }
 
 class Task1Page extends StatelessWidget {
+  const Task1Page({super.key});
+
   @override
   Widget build(BuildContext context) {
-    // return Task1('Hello everyone, It is my Greetings');
     return const Task1('Hello everyone, It is my Greetings');
+    // return const Task1('Hello again, It is the second time I am saying Greetings');
   }
 }
 
@@ -67,7 +69,6 @@ class Task2Page extends StatelessWidget {
 }
 
 class Task1 extends StatelessWidget {
-  // Task 1 class
   final String greeting;
 
   const Task1(this.greeting, {super.key});
